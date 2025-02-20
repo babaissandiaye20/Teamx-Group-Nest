@@ -1,4 +1,3 @@
-// product/dto/create-product.dto.ts
 import {
   IsString,
   IsNumber,
@@ -6,6 +5,7 @@ import {
   Min,
   IsOptional,
   IsUrl,
+  ValidateIf,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -44,8 +44,10 @@ export class CreateProductDto {
   @ApiPropertyOptional({
     description: "URL de l'image du produit",
     example: 'https://example.com/iphone13.jpg',
+    type: 'string',
+    format: 'binary',
   })
-  @IsString()
+  @ValidateIf((o) => o.image !== undefined && o.image !== '')
   @IsUrl()
   @IsOptional()
   image?: string;

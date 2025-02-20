@@ -5,6 +5,10 @@ import { ResponseService } from './response/response.service';
 
 @Injectable()
 export class ExceptionService {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  createBadRequestException(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private readonly httpResponseService: ResponseService) {}
 
   createValidationException(errors: ValidationError[]): HttpException {

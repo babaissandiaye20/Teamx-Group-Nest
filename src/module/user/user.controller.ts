@@ -22,6 +22,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
+import { Pagination } from 'src/decorator/Pagination/pagination.decorator';
 
 @Controller('users')
 @ApiTags('users')
@@ -33,6 +34,7 @@ export class UserController extends BaseController<User> {
 
   // Il faut redéfinir explicitement les méthodes avec les décorateurs HTTP
   @Get()
+  @Pagination()
   async findAll(@Query() filter: FindUserDto) {
     console.log('Finding all users with filter:', filter);
     return super.findAll(filter);
