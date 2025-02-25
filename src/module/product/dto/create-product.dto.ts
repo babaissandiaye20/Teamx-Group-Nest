@@ -15,8 +15,12 @@ export class CreateProductDto {
     example: 'iPhone 13',
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: 'Le nom doit être une chaîne de caractères',
+  })
+  @IsNotEmpty({
+    message: 'Le nom doit être renseigné',
+  })
   name: string;
 
   @ApiProperty({
@@ -25,9 +29,16 @@ export class CreateProductDto {
     minimum: 0,
     required: true,
   })
-  @IsNumber()
+  @IsNumber(
+    {},
+    {
+      message: 'Le prix doit être un nombre',
+    },
+  )
   @Min(0)
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: 'Le prix doit être renseigné',
+  })
   price: number;
 
   @ApiProperty({
@@ -37,8 +48,12 @@ export class CreateProductDto {
     required: true,
   })
   @IsNumber()
-  @Min(0)
-  @IsNotEmpty()
+  @Min(0, {
+    message: 'La quantité doit être supérieure ou égale à 0',
+  })
+  @IsNotEmpty({
+    message: 'La quantité doit être renseignée',
+  })
   quantity: number;
 
   @ApiPropertyOptional({
@@ -47,7 +62,9 @@ export class CreateProductDto {
     type: 'string',
     format: 'binary',
   })
-  @ValidateIf((o) => o.image !== undefined && o.image !== '')
+  @ValidateIf((o) => o.image !== undefined && o.image !== '', {
+    message: "l'image doit être rensaigner",
+  })
   /*  @IsUrl() */
   @IsOptional()
   image?: string;

@@ -8,8 +8,12 @@ export class CreateUserDto {
     example: 'Baba Issa',
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: 'Le prénom doit être une chaîne de caractères',
+  })
+  @IsNotEmpty({
+    message: 'Le prénom doit être renseigné',
+  })
   firstname: string;
 
   @ApiProperty({
@@ -17,8 +21,12 @@ export class CreateUserDto {
     example: 'Ndiaye',
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: 'Le nom doit être une chaîne de caractères',
+  })
+  @IsNotEmpty({
+    message: 'Le nom doit être renseigné',
+  })
   lastname: string;
 
   @ApiProperty({
