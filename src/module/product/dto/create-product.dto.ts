@@ -4,7 +4,7 @@ import {
   IsNotEmpty,
   Min,
   IsOptional,
-  IsUrl,
+  /*   IsUrl, */
   ValidateIf,
 } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
@@ -48,7 +48,7 @@ export class CreateProductDto {
     format: 'binary',
   })
   @ValidateIf((o) => o.image !== undefined && o.image !== '')
-  @IsUrl()
+  /*  @IsUrl() */
   @IsOptional()
   image?: string;
 }

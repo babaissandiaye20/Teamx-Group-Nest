@@ -10,11 +10,13 @@ import { getModelToken } from '@nestjs/mongoose';
 import { ExceptionService } from '../../validation/exception/exception.service';
 import { ResponseService } from '../../validation/exception/response/response.service';
 import { UploadModule } from 'src/services/upload/upload.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Product.name, schema: ProductSchema }]),
     UploadModule,
+    CacheModule.register(), // Register the cache module
   ],
   controllers: [ProductController],
   providers: [

@@ -14,6 +14,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ApiQuery,
 } from '@nestjs/swagger';
 import { BaseController } from 'src/services/base/methode/base.controller';
@@ -29,12 +30,11 @@ import { Pagination } from 'src/decorator/Pagination/pagination.decorator';
 export class UserController extends BaseController<User> {
   constructor(private readonly userService: UserService) {
     super(userService);
-    console.log('UserController initialized'); // Ajoutez ce log
+    console.log('UserController initialized');
   }
 
-  // Il faut redéfinir explicitement les méthodes avec les décorateurs HTTP
   @Get()
-  @Pagination()
+  /* @Pagination() */
   async findAll(@Query() filter: FindUserDto) {
     console.log('Finding all users with filter:', filter);
     return super.findAll(filter);

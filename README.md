@@ -57,6 +57,10 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+```bash
+## Documentation 
+$ npx @compodoc/compodoc -p tsconfig.json
+```
 
 ## Deployment
 
