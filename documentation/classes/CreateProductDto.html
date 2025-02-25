@@ -211,13 +211,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;URL de l&#x27;image du produit&#x27;, example: &#x27;https://example.com/iphone13.jpg&#x27;, type: &#x27;string&#x27;, format: &#x27;binary&#x27;})<br />@ValidateIf(o &#x3D;&gt; )<br />@IsOptional()<br />
+                            @ApiPropertyOptional({description: &#x27;URL de l&#x27;image du produit&#x27;, example: &#x27;https://example.com/iphone13.jpg&#x27;, type: &#x27;string&#x27;, format: &#x27;binary&#x27;})<br />@ValidateIf(o &#x3D;&gt; , {message: &#x27;l&#x27;image doit être rensaigner&#x27;})<br />@IsOptional()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/module/product/dto/create-product.dto.ts:53</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/module/product/dto/create-product.dto.ts:70</a></div>
                         </td>
                     </tr>
 
@@ -249,13 +249,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Nom du produit&#x27;, example: &#x27;iPhone 13&#x27;, required: true})<br />@IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Nom du produit&#x27;, example: &#x27;iPhone 13&#x27;, required: true})<br />@IsString({message: &#x27;Le nom doit être une chaîne de caractères&#x27;})<br />@IsNotEmpty({message: &#x27;Le nom doit être renseigné&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/module/product/dto/create-product.dto.ts:20</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/module/product/dto/create-product.dto.ts:24</a></div>
                         </td>
                     </tr>
 
@@ -288,13 +288,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Prix du produit&#x27;, example: 10000, minimum: 0, required: true})<br />@IsNumber()<br />@Min(0)<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Prix du produit&#x27;, example: 10000, minimum: 0, required: true})<br />@IsNumber({}, {message: &#x27;Le prix doit être un nombre&#x27;})<br />@Min(0)<br />@IsNotEmpty({message: &#x27;Le prix doit être renseigné&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/module/product/dto/create-product.dto.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/module/product/dto/create-product.dto.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -327,13 +327,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Quantité en stock&#x27;, example: 50, minimum: 0, required: true})<br />@IsNumber()<br />@Min(0)<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Quantité en stock&#x27;, example: 50, minimum: 0, required: true})<br />@IsNumber()<br />@Min(0, {message: &#x27;La quantité doit être supérieure ou égale à 0&#x27;})<br />@IsNotEmpty({message: &#x27;La quantité doit être renseignée&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/module/product/dto/create-product.dto.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/module/product/dto/create-product.dto.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -369,8 +369,12 @@ export class CreateProductDto {
     example: &#x27;iPhone 13&#x27;,
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: &#x27;Le nom doit être une chaîne de caractères&#x27;,
+  })
+  @IsNotEmpty({
+    message: &#x27;Le nom doit être renseigné&#x27;,
+  })
   name: string;
 
   @ApiProperty({
@@ -379,9 +383,16 @@ export class CreateProductDto {
     minimum: 0,
     required: true,
   })
-  @IsNumber()
+  @IsNumber(
+    {},
+    {
+      message: &#x27;Le prix doit être un nombre&#x27;,
+    },
+  )
   @Min(0)
-  @IsNotEmpty()
+  @IsNotEmpty({
+    message: &#x27;Le prix doit être renseigné&#x27;,
+  })
   price: number;
 
   @ApiProperty({
@@ -391,8 +402,12 @@ export class CreateProductDto {
     required: true,
   })
   @IsNumber()
-  @Min(0)
-  @IsNotEmpty()
+  @Min(0, {
+    message: &#x27;La quantité doit être supérieure ou égale à 0&#x27;,
+  })
+  @IsNotEmpty({
+    message: &#x27;La quantité doit être renseignée&#x27;,
+  })
   quantity: number;
 
   @ApiPropertyOptional({
@@ -401,7 +416,9 @@ export class CreateProductDto {
     type: &#x27;string&#x27;,
     format: &#x27;binary&#x27;,
   })
-  @ValidateIf((o) &#x3D;&gt; o.image !&#x3D;&#x3D; undefined &amp;&amp; o.image !&#x3D;&#x3D; &#x27;&#x27;)
+  @ValidateIf((o) &#x3D;&gt; o.image !&#x3D;&#x3D; undefined &amp;&amp; o.image !&#x3D;&#x3D; &#x27;&#x27;, {
+    message: &quot;l&#x27;image doit être rensaigner&quot;,
+  })
   /*  @IsUrl() */
   @IsOptional()
   image?: string;

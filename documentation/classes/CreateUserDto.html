@@ -207,7 +207,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/module/user/dto/create-user.dto.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/module/user/dto/create-user.dto.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -239,13 +239,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Prénom de l&#x27;utilisateur&#x27;, example: &#x27;Baba Issa&#x27;, required: true})<br />@IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Prénom de l&#x27;utilisateur&#x27;, example: &#x27;Baba Issa&#x27;, required: true})<br />@IsString({message: &#x27;Le prénom doit être une chaîne de caractères&#x27;})<br />@IsNotEmpty({message: &#x27;Le prénom doit être renseigné&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/module/user/dto/create-user.dto.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/module/user/dto/create-user.dto.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -277,13 +277,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;Nom de l&#x27;utilisateur&#x27;, example: &#x27;Ndiaye&#x27;, required: true})<br />@IsString()<br />@IsNotEmpty()<br />
+                            @ApiProperty({description: &#x27;Nom de l&#x27;utilisateur&#x27;, example: &#x27;Ndiaye&#x27;, required: true})<br />@IsString({message: &#x27;Le nom doit être une chaîne de caractères&#x27;})<br />@IsNotEmpty({message: &#x27;Le nom doit être renseigné&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/module/user/dto/create-user.dto.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/module/user/dto/create-user.dto.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -311,8 +311,12 @@ export class CreateUserDto {
     example: &#x27;Baba Issa&#x27;,
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: &#x27;Le prénom doit être une chaîne de caractères&#x27;,
+  })
+  @IsNotEmpty({
+    message: &#x27;Le prénom doit être renseigné&#x27;,
+  })
   firstname: string;
 
   @ApiProperty({
@@ -320,8 +324,12 @@ export class CreateUserDto {
     example: &#x27;Ndiaye&#x27;,
     required: true,
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({
+    message: &#x27;Le nom doit être une chaîne de caractères&#x27;,
+  })
+  @IsNotEmpty({
+    message: &#x27;Le nom doit être renseigné&#x27;,
+  })
   lastname: string;
 
   @ApiProperty({
